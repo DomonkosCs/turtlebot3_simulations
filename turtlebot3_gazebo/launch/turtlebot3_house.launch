@@ -5,6 +5,9 @@
   <arg name="z_pos" default="0.0" />
   <arg name="sensor_update_rate" default="10" />
   <arg name="encoder_noise_factor" default="0.0001" />
+  <arg name="odometry_source" default="encoder" />
+  <arg name="lidar_std" default="0.01" />
+
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_house.world" />
@@ -15,7 +18,9 @@
     <arg name="debug" value="false" />
   </include>
 
-  <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro update_rate:=$(arg sensor_update_rate) encoder_noise_factor:=$(arg encoder_noise_factor)" />
+  <param name="robot_description"
+    command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro update_rate:=$(arg sensor_update_rate) encoder_noise_factor:=$(arg encoder_noise_factor) lidar_std:=$(arg lidar_std) odometry_source:=$(arg odometry_source)" />
 
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model turtlebot3 -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
+    args="-urdf -model turtlebot3 -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
 </launch>
