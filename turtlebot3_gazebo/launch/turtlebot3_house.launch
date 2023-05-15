@@ -3,10 +3,10 @@
   <arg name="x_pos" default="-3.0" />
   <arg name="y_pos" default="1.0" />
   <arg name="z_pos" default="0.0" />
-  <arg name="sensor_update_rate" default="10" />
-  <arg name="encoder_noise_factor" default="0.0001" />
+  <arg name="sensor_update_rate" default="5" />
+  <arg name="encoder_noise_factor" default="0.0005" />
   <arg name="odometry_source" default="encoder" />
-  <arg name="lidar_std" default="0.01" />
+  <arg name="lidar_std" default="0.02" />
 
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
